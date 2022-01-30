@@ -67,8 +67,18 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+                                
+
+                                
+                                    <a class="nav-link" href="{{ route('manuals.index') }}">{{ __('マニュアル一覧') }}</a>
+                                
+
+                    
+                                    <a class="nav-link" href="{{ route('incidents.index') }}">{{ __('インシデント一覧') }}</a>
                                 </div>
+
                             </li>
+
                         @endguest
                     </ul>
                 </div>

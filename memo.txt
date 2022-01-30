@@ -78,11 +78,12 @@ php artisan make:migration create_manual_images_table --create=manual_images
 php artisan make:migration create_employees_table --create=employees
 
 
-
 ■コントローラー & モデル作成
-
 php artisan make:controller ManualController --model=Manual
 
+■ストレージリンクの貼り付け（画像パス設定のため）
+php artisan storage:link
+composer require intervention/image
 
 
 

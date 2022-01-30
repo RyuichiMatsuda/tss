@@ -8,20 +8,25 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+// 画像保存に必要な記述
+use Illuminate\Http\File;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class ManualController extends Controller
 {
 
     public function index()
     {
-        $manuals = Incident::select()->latest()->paginate(12);
+        $manuals = Manual::select()->latest()->paginate(12);
 
         return view('manuals.index', compact('manuals'));
     }
 
     public function detail($id)
     {
-        $manual = Incident::find($id);
+        $manual = Manual::find($id);
 
         return view('manuals.detail', compact('manual'));
     }
@@ -34,14 +39,38 @@ class ManualController extends Controller
     public function store(Request $request)
     {   
         // dd("ルートチェック");
-        
-        $manual = new Incident();
-        $manual->name = $request->name;
+        $manual = new Manual();
+        $manual->title = $request->title;
         $manual->body = $request->body;
-        $manual->status_id = 0;
+
+        $image_path = $this->saveImage($request->file('image_file')); 
+        $manual->image_file_name = $image_path;
+
         $manual->save();
 
         // return view('incidents.detail', compact('incident'));
-        return redirect()->route('manuals.detail', ['id' => $incident->id]);
+        return redirect()->route('manuals.detail', ['id' => $manual->id]);
     }
+
+
+
+    # 画像アップロード関係
+    private function saveImage(UploadedFile $file): string
+    {
+        $tempPath = $this->makeTempPath();
+        Image::make($file)->save($tempPath);
+
+        $filePath = Storage::disk('public')
+            ->putFile('manuals', new File($tempPath));
+
+        return basename($filePath);
+    }
+
+    private function makeTempPath(): string
+    {
+        $tmp_fp = tmpfile();
+        $meta   = stream_get_meta_data($tmp_fp);
+        return $meta["uri"];
+    }
+
 }

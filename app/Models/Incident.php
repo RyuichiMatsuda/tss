@@ -19,5 +19,5 @@ class Incident extends Model
         } else {
             return $str;
         }
-}
+    }
 }
