@@ -21,6 +21,16 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+// incidents
+Route::get('incidents/detail/{id}', 'App\Http\Controllers\IncidentController@detail')->name('incidents.detail');
+Route::post('incidents/store', 'App\Http\Controllers\IncidentController@store')->name('incidents.store');
+Route::get('incidents', 'App\Http\Controllers\IncidentController@index')->name('incidents.index');
+Route::get('incidents/new', 'App\Http\Controllers\IncidentController@new')->name('incidents.new');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::get('incidents/edit', 'App\Http\Controllers\IncidentController@edit')->name('incidents.edit');
+// Route::post('incidents/destroy', 'App\Http\Controllers\IncidentController@destroy')->name('incidents.destroy');
+// Route::post('incidents/update', 'App\Http\Controllers\IncidentController@update')->name('incidents.update');
+
+
+
