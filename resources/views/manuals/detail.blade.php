@@ -11,9 +11,11 @@
                     
                     <p>マニュアル詳細画面</p>
 
-                    <div class="row mb-3">
-                        <img class="detail_samune" src="/storage/manuals/{{$manual->image_file_name}}">
-                    </div>         
+                    @if($manual->image_file_name != null)
+                        <div class="row mb-3">
+                            <img class="detail_samune" src="/storage/manuals/{{$manual->image_file_name}}">
+                        </div>   
+                    @endif      
 
                     <div class="row mb-3">
                         <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('タイトル') }}</label>

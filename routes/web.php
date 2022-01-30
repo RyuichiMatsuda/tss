@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
@@ -23,6 +21,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // incidents
 Route::group(['middleware' => ['auth']], function(){
+
+    Route::get('/', 'App\Http\Controllers\IncidentController@index')->name('incidents.index');
+
     Route::get('incidents/detail/{id}', 'App\Http\Controllers\IncidentController@detail')->name('incidents.detail');
     Route::post('incidents/store', 'App\Http\Controllers\IncidentController@store')->name('incidents.store');
     Route::get('incidents', 'App\Http\Controllers\IncidentController@index')->name('incidents.index');
@@ -33,10 +34,10 @@ Route::group(['middleware' => ['auth']], function(){
 
 
 // manuals
-Route::get('manuals/detail/{id}', 'App\Http\Controllers\ManualController@detail')->name('manuals.detail');
-Route::post('manuals/store', 'App\Http\Controllers\ManualController@store')->name('manuals.store');
-Route::get('manuals', 'App\Http\Controllers\ManualController@index')->name('manuals.index');
-Route::get('manuals/new', 'App\Http\Controllers\ManualController@new')->name('manuals.new');
+    Route::get('manuals/detail/{id}', 'App\Http\Controllers\ManualController@detail')->name('manuals.detail');
+    Route::post('manuals/store', 'App\Http\Controllers\ManualController@store')->name('manuals.store');
+    Route::get('manuals', 'App\Http\Controllers\ManualController@index')->name('manuals.index');
+    Route::get('manuals/new', 'App\Http\Controllers\ManualController@new')->name('manuals.new');
 });
 
 

@@ -43,8 +43,10 @@ class ManualController extends Controller
         $manual->title = $request->title;
         $manual->body = $request->body;
 
-        $image_path = $this->saveImage($request->file('image_file')); 
-        $manual->image_file_name = $image_path;
+        if($request->has('image_file')){
+            $image_path = $this->saveImage($request->file('image_file')); 
+            $manual->image_file_name = $image_path;
+        }
 
         $manual->save();
 

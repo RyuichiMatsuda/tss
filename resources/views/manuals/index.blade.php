@@ -37,7 +37,7 @@
               </table>
 
               
-              <p><a href="{{ route('incidents.new') }}">新規インシデント登録へ</a></p>
+              <p><a href="{{ route('manuals.new') }}">新規マニュアル登録へ</a></p>
 
             </div>
         </div>
