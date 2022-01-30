@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('incidents', 'App\Http\Controllers\IncidentController@index')->name('incidents.index');
     Route::get('incidents/new', 'App\Http\Controllers\IncidentController@new')->name('incidents.new');
 // Route::get('incidents/edit', 'App\Http\Controllers\IncidentController@edit')->name('incidents.edit');
-// Route::post('incidents/destroy', 'App\Http\Controllers\IncidentController@destroy')->name('incidents.destroy');
+    Route::post('incidents/destroy', 'App\Http\Controllers\IncidentController@destroy')->name('incidents.destroy');
 // Route::post('incidents/update', 'App\Http\Controllers\IncidentController@update')->name('incidents.update');
 
 
@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('manuals/store', 'App\Http\Controllers\ManualController@store')->name('manuals.store');
     Route::get('manuals', 'App\Http\Controllers\ManualController@index')->name('manuals.index');
     Route::get('manuals/new', 'App\Http\Controllers\ManualController@new')->name('manuals.new');
+    Route::post('manuals/destroy', 'App\Http\Controllers\ManualController@destroy')->name('manuals.destroy');
 });
 
 

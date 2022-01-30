@@ -20,6 +20,8 @@ class CreateManualsTable extends Migration
             $table->text('body')->nullable();
             $table->integer('video_url')->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

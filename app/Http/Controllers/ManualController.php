@@ -54,7 +54,14 @@ class ManualController extends Controller
         return redirect()->route('manuals.detail', ['id' => $manual->id]);
     }
 
+    public function destroy(Request $request)
+    {   
+        $manual = Manual::find($request->id);
+        $manual->delete();
 
+        // return view('incidents.detail', compact('incident'));
+        return redirect()->route('manuals.index');
+    }
 
     # 画像アップロード関係
     private function saveImage(UploadedFile $file): string

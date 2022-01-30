@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+
 class IncidentController extends Controller
 {
     public function __construct()
@@ -50,6 +51,14 @@ class IncidentController extends Controller
     }
 
 
+    public function destroy(Request $request)
+    {   
+        $incident = Incident::find($request->id);
+        $incident->delete();
+
+        // return view('incidents.detail', compact('incident'));
+        return redirect()->route('incidents.index');
+    }
 
 
 

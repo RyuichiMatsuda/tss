@@ -20,7 +20,7 @@
                             <td>{{ $incident->created_at }}</td>
                             <td colspan="4">{{ $incident->strlength() }}</td>
                             
-                            <td><a href="{{ route('incidents.detail', ['id' => $incident->id]) }}"　class="btn btn-outline-primary btn-sm">詳細</a></td>
+                            <td><a href="{{ route('incidents.detail', ['id' => $incident->id]) }}" class="btn btn-outline-primary btn-sm">詳細</a></td>
                             {{-- 
                             <td><a class="btn btn-outline-primary btn-sm">編集</a></td>
                             <td>
@@ -31,6 +31,13 @@
                             </form>
                             </td>
                              --}}
+                             <td>
+                                <form method="POST" action="{{ route('incidents.destroy') }}">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="id" value= "{{$incident->id}}">
+                                    <input type="submit" value="削除" class="btn btn-danger post_del_btn" onclick="return confirm('削除しますか ?');">
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
 

@@ -21,6 +21,8 @@ class CreateIncidentsTable extends Migration
             $table->integer('employee_id')->nullable();
             $table->integer('status_id')->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
