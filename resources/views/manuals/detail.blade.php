@@ -21,7 +21,7 @@
                         <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('タイトル') }}</label>
 
                         <div class="col-md-6">
-                            <p>{{ $manual->name }}</p>
+                            <p>{{ $manual->title }}</p>
                         </div>
                     </div>
 
