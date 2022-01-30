@@ -13,17 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // incidents
 Route::group(['middleware' => ['auth']], function(){
-
-    Route::get('/', 'App\Http\Controllers\IncidentController@index')->name('incidents.index');
-
     Route::get('incidents/detail/{id}', 'App\Http\Controllers\IncidentController@detail')->name('incidents.detail');
     Route::post('incidents/store', 'App\Http\Controllers\IncidentController@store')->name('incidents.store');
     Route::get('incidents', 'App\Http\Controllers\IncidentController@index')->name('incidents.index');
