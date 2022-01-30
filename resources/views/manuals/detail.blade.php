@@ -36,7 +36,13 @@
                     
                     <p><a href="{{ route('manuals.index') }}">一覧ページへ</a></p>
                     <p><a href="{{ route('manuals.new') }}">新規マニュアル登録へ</a></p>
-
+                    <p>
+                        <form method="POST" action="{{ route('manuals.destroy') }}">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="id" value= "{{$manual->id}}">
+                            <input type="submit" value="削除" class="btn btn-danger post_del_btn" onclick="return confirm('削除しますか ?');">
+                        </form>
+                    </p>
                 </div>
                 
             </div>

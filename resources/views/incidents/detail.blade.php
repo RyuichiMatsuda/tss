@@ -31,11 +31,17 @@
                         </div>
                     </div>
 
-                    <p>インシデントステータス: {{ config('47pref')[$incident->status_id] }}</p>
+                    <p>インシデントステータス: {{ config('stauts')[$incident->status_id] }}</p>
                     
                     <p><a href="{{ route('incidents.index') }}">一覧ページへ</a></p>
                     <p><a href="{{ route('incidents.new') }}">新規インシデント登録へ</a></p>
-
+                    <p>
+                        <form method="POST" action="{{ route('incidents.destroy') }}">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="id" value= "{{$incident->id}}">
+                            <input type="submit" value="削除" class="btn btn-danger post_del_btn" onclick="return confirm('削除しますか ?');">
+                        </form>
+                    </p>
                 </div>
                 
             </div>
