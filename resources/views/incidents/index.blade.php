@@ -5,14 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('インシデント一覧') }}</div>
 
-                <div class="card-body">
-                    
-                    <p>ここはindexです。</p>
-                    
-                </div>
-            </div>
 
             <table class="table table-striped">
                 <thead class="thead-dark">
@@ -44,6 +38,8 @@
               </table>
 
               <p><a href="{{ route('incidents.new') }}">新規インシデント登録へ</a></p>
+
+            </div>
 
         </div>
     </div>
