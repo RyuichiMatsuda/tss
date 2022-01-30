@@ -31,6 +31,8 @@
                         </div>
                     </div>
 
+                    <p>インシデントステータス: {{ config('47pref')[$incident->status_id] }}</p>
+                    
                     <p><a href="{{ route('incidents.index') }}">一覧ページへ</a></p>
                     <p><a href="{{ route('incidents.new') }}">新規インシデント登録へ</a></p>
 

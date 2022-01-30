@@ -79,9 +79,10 @@ php artisan make:migration create_employees_table --create=employees
 
 
 
-ルート
+■コントローラー & モデル作成
 
-viewファイル
+php artisan make:controller ManualController --model=Manual
 
-コントローラー
+
+
 
