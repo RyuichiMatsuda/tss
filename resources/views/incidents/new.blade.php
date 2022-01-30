@@ -47,18 +47,19 @@
                         </div>
 
                         {{-- 対応社員登録 --}}
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('顧客名') }}</label>
 
+                        {{-- 社員名のプルダウンメニュー（今は閉じておく。） S 
+                        <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('顧客名') }}</label>                                
+                            @if(false)
                             <div class="col-md-6">
-                                <select class="form-control" id="value_category" name="value_category_id" required>
-                                    <option value="" hidden>▼価値観カテゴリー</option>
+
+                                <select class="form-control" id="employee_id" name="value_category_id" required>
+                                    <option value="" hidden>▼対応社員名</option>
                                     @foreach($value_categories as $value_category)
                                         @if($company_value->value_category->id === $value_category->id )
                                             <option value="{{ $value_category->id }}" selected>{{ $value_category->title }}</option>
-                                        @else
                                             <option value="{{ $value_category->id }}">{{ $value_category->title }}</option>
-                                        @endif
                                     @endforeach
                                 </select>
 
@@ -67,6 +68,16 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                            @endif
+                        社員名のプルダウンメニュー（今は閉じておく。） E --}}
+
+
+                        <div class="row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('登録') }}
+                                </button>
                             </div>
                         </div>
 

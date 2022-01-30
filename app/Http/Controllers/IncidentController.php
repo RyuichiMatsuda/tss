@@ -37,11 +37,16 @@ class IncidentController extends Controller
 
     public function store(Request $request)
     {   
+        // dd("ルートチェック");
+        
         $incident = new Incident();
-        // $incident-> = $request->;
+        $incident->name = $request->name;
+        $incident->body = $request->body;
+        $incident->status_id = 0;
         $incident->save();
 
-        return view('incidents.detail', compact('incident'));
+        // return view('incidents.detail', compact('incident'));
+        return redirect()->route('incidents.detail', ['id' => $incident->id]);
     }
 
 
