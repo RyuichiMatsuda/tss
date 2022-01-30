@@ -2,7 +2,12 @@
 
 
 bash>
+ゼロ構築用
 composer create-project laravel/laravel tss --prefer-dist
+
+
+bash>
+composer update
 mysql -uroot -p
 
 mysql> 
@@ -25,6 +30,37 @@ php artisan config:cache
 php artisan migrate
 
 
+まず、githubでリポジトリを作成する。
+git init 
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/dam-san/tss.git
+git push -u origin main 
+
+
+ブランチ
+git branch ブランチ名
+git checkout ブランチ名
+
+上の２つを混ぜたやつ↓
+git checkout -b ブランチ名
+
+リモートブランチ
+git branch -r
+
+現在の作業ブランチに指定ブランチをマージする
+git merge ブランチ名
+
+
+
+■laravel AUTH
+composer require laravel/ui
+npm install && npm run dev
+php artisan ui vue --auth
+
+■laravel Bootstrap
+composer require laravel/ui
 
 
 
