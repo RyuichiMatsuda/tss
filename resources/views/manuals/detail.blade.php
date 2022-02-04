@@ -15,7 +15,12 @@
                         <div class="row mb-3">
                             <img class="detail_samune" src="/storage/manuals/{{$manual->image_file_name}}">
                         </div>   
-                    @endif      
+                    @endif
+
+                    {{-- // #マニュアル：動画：配信 --}}
+                    <video controls loop autoplay muted width="500px" height="300px">
+                        <source src="/storage/manuals/video/test.mp4" type="video/mp4">
+                    </video>
 
                     <div class="row mb-3">
                         <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('タイトル') }}</label>

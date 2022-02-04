@@ -85,6 +85,7 @@ php artisan storage:link
 composer require intervention/image
 
 
+#Auth：
 
 
 #マニュアル
@@ -99,4 +100,6 @@ composer require intervention/image
 php artisan storage:link
 
 
-
+#やること
+binding pry
+php my admin

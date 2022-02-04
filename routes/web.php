@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// #Auth：ルート
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -34,6 +35,10 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('manuals', 'App\Http\Controllers\ManualController@index')->name('manuals.index');
     Route::get('manuals/new', 'App\Http\Controllers\ManualController@new')->name('manuals.new');
     Route::post('manuals/destroy', 'App\Http\Controllers\ManualController@destroy')->name('manuals.destroy');
+
+    // #マニュアル：動画：配信
+    Route::get('manuals/video/stream', 'App\Http\Controllers\ManualController@stream')->name('manuals.stream');
+
 });
 
 
