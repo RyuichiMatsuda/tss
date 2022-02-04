@@ -57,7 +57,6 @@ git push origin main
 
 
 
-
 ■laravel AUTH
 composer require laravel/ui
 npm install && npm run dev
