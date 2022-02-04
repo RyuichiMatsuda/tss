@@ -39,10 +39,10 @@ class ManualController extends Controller
     public function store(Request $request)
     {   
         // dd("ルートチェック");
-        $manual = new Manual();
-        $manual->title = $request->title;
-        $manual->body = $request->body;
+        $manual = new Manual($request->all());
 
+        dd($manual);
+        //画像を取り扱う場合は以下の記述がいる
         if($request->has('image_file')){
             $image_path = $this->saveImage($request->file('image_file')); 
             $manual->image_file_name = $image_path;
@@ -50,7 +50,6 @@ class ManualController extends Controller
 
         $manual->save();
 
-        // return view('incidents.detail', compact('incident'));
         return redirect()->route('manuals.detail', ['id' => $manual->id]);
     }
 

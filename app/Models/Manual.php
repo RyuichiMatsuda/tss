@@ -12,6 +12,13 @@ class Manual extends Model
 
     use SoftDeletes;
 
+
+    // new Model($request->all());を使うためのホワイトリスト
+    protected $fillable = ['title', 'body',
+                            'image_file_name','video_url'];
+
+
+    // 一覧表示の際の文字数制限
     public function strlength() {
         $str = $this->body;
         $limit = 20;
