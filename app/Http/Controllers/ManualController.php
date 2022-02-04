@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-// 画像保存に必要な記述
+// #マニュアル：画像保存
 use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -38,11 +38,13 @@ class ManualController extends Controller
 
     public function store(Request $request)
     {   
-        // dd("ルートチェック");
+        // #マニュアル：バリデーション
+        $this->validator($request);
+
+        // #マニュアル：ホワイトリストを使用した保存
         $manual = new Manual($request->all());
 
-        dd($manual);
-        //画像を取り扱う場合は以下の記述がいる
+        // #マニュアル：画像保存
         if($request->has('image_file')){
             $image_path = $this->saveImage($request->file('image_file')); 
             $manual->image_file_name = $image_path;
@@ -62,23 +64,40 @@ class ManualController extends Controller
         return redirect()->route('manuals.index');
     }
 
-    # 画像アップロード関係
+    // #マニュアル：画像保存
     private function saveImage(UploadedFile $file): string
     {
-        $tempPath = $this->makeTempPath();
-        Image::make($file)->save($tempPath);
+        // 画像名の作成
+        $tmp_fp = tmpfile();
+        $meta   = stream_get_meta_data($tmp_fp);
+        $tempPath = $meta["uri"];
 
+        Image::make($file)->save($tempPath);
+        //fitのチェーンを追加して、画像のサイズを変更できる。
+        //Image::make($file)->fit(300, 300)->save($tempPath);
+
+        // storagelinkで紐付けたpublic配下のmanualsフォルダに保存
         $filePath = Storage::disk('public')
             ->putFile('manuals', new File($tempPath));
 
         return basename($filePath);
     }
 
-    private function makeTempPath(): string
-    {
-        $tmp_fp = tmpfile();
-        $meta   = stream_get_meta_data($tmp_fp);
-        return $meta["uri"];
+    // #マニュアル：バリデーション
+    public function validator(Request $request) {
+        $request->validate([
+            'title' => ['required', 'between:1,70'],
+            'body' => ['required','min:87','max:50000'],
+
+            // #マニュアル：画像保存
+            'image_file_name' => ['file','mimes:jpeg,png,jpg,bmb','max:2048'],
+        ],[
+
+            //　以下はカスタムメッセージ
+            'title.between' => 'タイトルは、70文字までです',
+            'body.max' => '本文は、5000文字までです',
+            'body.min' => '本文は必須です。',
+        ]);
     }
 
 }

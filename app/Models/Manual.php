@@ -10,15 +10,15 @@ class Manual extends Model
 {
     use HasFactory;
 
+    // #マニュアル：ソフトデリート
     use SoftDeletes;
 
-
-    // new Model($request->all());を使うためのホワイトリスト
+    // #マニュアル：ホワイトリストを使用した保存
     protected $fillable = ['title', 'body',
                             'image_file_name','video_url'];
 
 
-    // 一覧表示の際の文字数制限
+    // #マニュアル：メソッド：文字数制限
     public function strlength() {
         $str = $this->body;
         $limit = 20;

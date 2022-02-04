@@ -15,12 +15,15 @@ class CreateManualsTable extends Migration
     {
         Schema::create('manuals', function (Blueprint $table) {
             $table->id();
-            $table->string('image_file_name')->nullable();
             $table->string('title')->nullable();
             $table->text('body')->nullable();
             $table->integer('video_url')->nullable();
             $table->timestamps();
 
+            // #マニュアル：画像保存
+            $table->string('image_file_name')->nullable();
+
+            // #マニュアル：ソフトデリート
             $table->softDeletes();
         });
     }
