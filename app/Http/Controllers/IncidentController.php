@@ -51,6 +51,24 @@ class IncidentController extends Controller
     }
 
 
+    // #インシデント：非同期(Ajax)
+    public function ajax_store(Request $request)
+    {
+        $incident = new Incident();
+        $incident->title = $request->title;
+        $incident->body = $request->body;
+        $incident->status_id = 0;
+        $incident->user_id = Auth::id();
+        $incident->save();
+
+        return response()->json([
+            'path' => $image_path,
+            'message' => 'ok',
+            'images' => $images,
+        ], 200, [], JSON_UNESCAPED_UNICODE);
+    }
+
+
     public function destroy(Request $request)
     {   
         $incident = Incident::find($request->id);

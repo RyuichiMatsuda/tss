@@ -113,8 +113,12 @@ php artisan make:migration create_threads_table --create=threads
 php artisan make:controller ThreadController --model=Thread
 
 
+#雛形：部分テンプレート
+@include('template.link.pref_search_for_47pref', ['id'=>46, 'img_id'=>'46'])
 
 
+#コマンド
+shift command L  で全選択
 
 
 #やること

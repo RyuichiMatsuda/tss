@@ -23,6 +23,7 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard
 Route::group(['middleware' => ['auth']], function(){
     Route::get('incidents/detail/{id}', 'App\Http\Controllers\IncidentController@detail')->name('incidents.detail');
     Route::post('incidents/store', 'App\Http\Controllers\IncidentController@store')->name('incidents.store');
+    Route::post('incidents/ajax_store', 'App\Http\Controllers\IncidentController@ajax_store')->name('incidents.ajax_store');
     Route::get('incidents', 'App\Http\Controllers\IncidentController@index')->name('incidents.index');
     Route::get('incidents/new', 'App\Http\Controllers\IncidentController@new')->name('incidents.new');
 // Route::get('incidents/edit', 'App\Http\Controllers\IncidentController@edit')->name('incidents.edit');

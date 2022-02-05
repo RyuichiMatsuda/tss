@@ -24,7 +24,7 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        //
+    
     }
 
     /**
@@ -35,15 +35,17 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $thread = new Thread();
+        // $thread->title = $request->title;
+        $thread->body = $request->body;
+        $thread->status_id = 0;
+        $thread->save();
+
+        // return view('Threads.detail', compact('thread'));
+        return redirect()->route('threads.detail', ['id' => $thread->id]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Thread  $thread
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Thread $thread)
     {
         //
