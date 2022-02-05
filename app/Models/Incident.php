@@ -10,7 +10,21 @@ class Incident extends Model
 {
     use HasFactory;
 
+    // #インシデント：ソフトデリート
     use SoftDeletes;
+
+
+    // #インシデント：リレーション
+    public function user()
+    {
+      return $this->belongsTo(User::class);
+    }
+
+    public function threads()
+    {
+      return $this->hasMany(Thread::class);
+    }
+
 
 
     public function strlength() {

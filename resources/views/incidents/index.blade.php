@@ -15,7 +15,7 @@
                 <tbody>
                     @foreach ($incidents as $incident)
                         <tr>
-                            <td>{{ $incident->name }}</td>
+                            <td>{{ $incident->title }}</td>
                             <td>{{ config('status')[$incident->status_id] }}</td>
                             <td>{{ $incident->created_at }}</td>
                             <td colspan="4">{{ $incident->strlength() }}</td>

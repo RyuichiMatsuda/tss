@@ -19,7 +19,7 @@
                         <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('電話発信者名') }}</label>
 
                         <div class="col-md-6">
-                            <p>{{ $incident->name }}</p>
+                            <p>{{ $incident->title }}</p>
                         </div>
                     </div>
 

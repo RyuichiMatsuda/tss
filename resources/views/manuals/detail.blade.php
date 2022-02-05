@@ -17,7 +17,7 @@
                         </div>   
                     @endif
 
-                    {{-- // #マニュアル：動画：配信 --}}
+                    {{-- // #マニュアル：動画：配信：videoタグ --}}
                     <video controls loop autoplay muted width="500px" height="300px">
                         <source src="/storage/manuals/video/test.mp4" type="video/mp4">
                     </video>

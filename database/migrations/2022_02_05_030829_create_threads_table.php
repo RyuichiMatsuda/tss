@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateManualsTable extends Migration
+class CreateThreadsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class CreateManualsTable extends Migration
      */
     public function up()
     {
-        Schema::create('manuals', function (Blueprint $table) {
+        Schema::create('threads', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
             $table->text('body')->nullable();
-            $table->string('video_url')->nullable();
+
+            // スレッド：リレーション
+            $table->integer('incident_id')->nullable();
+
+            $table->integer('user_id')->nullable();
+            $table->integer('employee_id')->nullable();
+            $table->integer('status_id')->nullable();
             $table->timestamps();
-
-            // #マニュアル：画像保存
-            $table->string('image_file_name')->nullable();
-
-            // #マニュアル：ソフトデリート
-            $table->softDeletes();
         });
     }
 
@@ -35,6 +35,6 @@ class CreateManualsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('manuals');
+        Schema::dropIfExists('threads');
     }
 }

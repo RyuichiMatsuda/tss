@@ -15,13 +15,14 @@ class CreateIncidentsTable extends Migration
     {
         Schema::create('incidents', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->string('title')->nullable();
             $table->text('body')->nullable();
             $table->integer('user_id')->nullable();
             $table->integer('employee_id')->nullable();
             $table->integer('status_id')->nullable();
             $table->timestamps();
 
+            // インシデント：ソフトデリート
             $table->softDeletes();
         });
     }

@@ -16,7 +16,7 @@ use Intervention\Image\Facades\Image;
 
 class ManualController extends Controller
 {
-    // #マニュアル：ユーザー認証
+    // #マニュアル：ユーザー認証 
     public function __construct() {
 
         $this->middleware('auth');
@@ -45,7 +45,7 @@ class ManualController extends Controller
     public function store(Request $request)
     {   
         // #マニュアル：バリデーション
-        $this->validator($request);
+        // $this->validator($request);
 
         // #マニュアル：ホワイトリストを使用した保存
         $manual = new Manual($request->all());
@@ -54,6 +54,12 @@ class ManualController extends Controller
         if($request->has('image_file')){
             $image_path = $this->saveImage($request->file('image_file')); 
             $manual->image_file_name = $image_path;
+        }
+
+        // #マニュアル：動画：保存
+        if($request->has('video_file')){
+            $video_url = $this->saveVideo($request->file('video_file')); 
+            $manual->video_url = $video_url;
         }
 
         $manual->save();
@@ -118,8 +124,6 @@ class ManualController extends Controller
     }
 
 
-
-
     // #マニュアル：画像保存
     private function saveImage(UploadedFile $file): string
     {
@@ -137,6 +141,26 @@ class ManualController extends Controller
             ->putFile('manuals', new File($tempPath));
 
         return basename($filePath);
+    }
+
+
+    // #マニュアル：動画：保存
+    private function saveVideo(UploadedFile $file): string
+    {
+        // 画像名の作成
+        $tmp_fp = tmpfile();
+        $meta   = stream_get_meta_data($tmp_fp);
+        $tempPath = $meta["uri"];
+
+        $file->storeAs('public/manuals/video',$tempPath.".mp4");
+        //fitのチェーンを追加して、画像のサイズを変更できる。
+        //Image::make($file)->fit(300, 300)->save($tempPath);
+
+        // storagelinkで紐付けたpublic配下のmanualsフォルダに保存
+        $filePath = Storage::disk('public')
+            ->putFile('manuals', new File($tempPath));
+
+        return $tempPath.".mp4";
     }
 
     // #マニュアル：バリデーション

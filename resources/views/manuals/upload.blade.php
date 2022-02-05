@@ -5,22 +5,35 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
+                
                 <div class="card-body">
                     
-                    <p>インシデント新規登録</p>
+                    <p>マニュアル新規登録</p>
 
-                    {{-- // #インシデント：投稿フォーム --}}
-                    <form method="POST" action="{{ route('incidents.store') }}">
+                    <form method="POST" action="{{ route('manuals.store') }}" enctype="multipart/form-data">
                         @csrf
+
+                        {{-- 画像登録 --}}
+                        <div class="row mb-3">
+                            <label for="image_file" class="col-md-4 col-form-label text-md-end">{{ __('画像') }}</label>
+
+                            <div class="col-md-6">
+                                <input class="form-control" name="image_file" type="file" accept="image/png, image/jpeg" >
+
+                                @error('image_file')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         {{-- 電話発信者名 --}}
                         <div class="row mb-3">
-                            <label for="title" class="col-md-4 col-form-label text-md-end">{{ __('電話発信者名') }}</label>
+                            <label for="title" class="col-md-4 col-form-label text-md-end">{{ __('タイトル') }}</label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
 
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -32,7 +45,7 @@
 
                         {{-- インシデント概要 --}}
                         <div class="row mb-3">
-                            <label for="body" class="col-md-4 col-form-label text-md-end">{{ __('インシデント概要') }}</label>
+                            <label for="body" class="col-md-4 col-form-label text-md-end">{{ __('本文') }}</label>
 
                             <div class="col-md-6">
                                 <textarea id="body" type="text" class="form-control @error('body') is-invalid @enderror" name="body" value="{{ old('free_space') }}" required autofocus></textarea>

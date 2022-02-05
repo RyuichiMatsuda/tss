@@ -26,6 +26,18 @@
                                     </span>
                                 @enderror
                             </div>
+
+                            <label for="video_file" class="col-md-4 col-form-label text-md-end">{{ __('動画') }}</label>
+                            <div class="col-md-6">
+                                <input class="form-control" name="video_file" type="file" accept="video/mp4,video/x-m4v,video/*" >
+
+                                @error('video_file')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            
                         </div>
 
                         {{-- 電話発信者名 --}}

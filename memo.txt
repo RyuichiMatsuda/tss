@@ -90,14 +90,31 @@ composer require intervention/image
 
 #マニュアル
 
- // #マニュアル：コマンド
+// #マニュアル：コマンド
 php artisan make:migration create_manuals_table --create=manuals
 php artisan make:controller ManualController --model=Manual
-
 
 // #マニュアル：画像保存：コマンド
 composer require intervention/image
 php artisan storage:link
+
+
+
+#インシデント
+
+
+
+
+
+#スレッド
+
+// #スレッド：コマンド
+php artisan make:migration create_threads_table --create=threads
+php artisan make:controller ThreadController --model=Thread
+
+
+
+
 
 
 #やること

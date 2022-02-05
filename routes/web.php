@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
 
-// incidents
+// #インシデント：ルート
 Route::group(['middleware' => ['auth']], function(){
     Route::get('incidents/detail/{id}', 'App\Http\Controllers\IncidentController@detail')->name('incidents.detail');
     Route::post('incidents/store', 'App\Http\Controllers\IncidentController@store')->name('incidents.store');
@@ -29,7 +30,7 @@ Route::group(['middleware' => ['auth']], function(){
 // Route::post('incidents/update', 'App\Http\Controllers\IncidentController@update')->name('incidents.update');
 
 
-// manuals
+// #マニュアル：ルート
     Route::get('manuals/detail/{id}', 'App\Http\Controllers\ManualController@detail')->name('manuals.detail');
     Route::post('manuals/store', 'App\Http\Controllers\ManualController@store')->name('manuals.store');
     Route::get('manuals', 'App\Http\Controllers\ManualController@index')->name('manuals.index');
@@ -38,6 +39,9 @@ Route::group(['middleware' => ['auth']], function(){
 
     // #マニュアル：動画：配信
     Route::get('manuals/video/stream', 'App\Http\Controllers\ManualController@stream')->name('manuals.stream');
+    
+    // #マニュアル：動画：アップロード
+    // Route::form('manuals/video/upload', 'App\Http\Controllers\ManualController@upload')->name('manuals.upload');
 
 });
 

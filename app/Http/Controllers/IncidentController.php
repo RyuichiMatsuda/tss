@@ -41,7 +41,7 @@ class IncidentController extends Controller
         // dd("ルートチェック");
         
         $incident = new Incident();
-        $incident->name = $request->name;
+        $incident->title = $request->title;
         $incident->body = $request->body;
         $incident->status_id = 0;
         $incident->save();
