@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Incident;
+use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $incidents = Incident::select()->latest()->paginate(12);
+        $new_incident = new Incident();
+
+        return view('home', compact('incidents','new_incident'));
     }
+
+
+    
 }

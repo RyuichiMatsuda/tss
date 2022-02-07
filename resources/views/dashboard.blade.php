@@ -575,7 +575,7 @@
         </div>
     </div>
 
-    {{-- // #スレッド：非同期(Ajax) --}}
+    {{-- // #インシデント：非同期(Ajax) --}}
     <script type="text/javascript" src="/js/incident.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"

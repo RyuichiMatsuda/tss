@@ -22,9 +22,18 @@ class Incident extends Model
 
     public function threads()
     {
-      return $this->hasMany(Thread::class);
+      return $this->hasMany(Thread::class)->orderBy('created_at', 'desc');
     }
 
+    // #インシデント：リレーション：depends on destroy
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($incident) {
+            $incident->threads()->delete();
+        });
+    }
 
 
     public function strlength() {

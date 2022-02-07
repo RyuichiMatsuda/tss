@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Thread;
+use App\Models\Incident;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ThreadController extends Controller
 {
@@ -35,14 +40,26 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
-        $thread = new Thread();
-        // $thread->title = $request->title;
+        if($request->id == null){
+            $thread = new Thread();
+
+            $thread->incident_id = $request->incident_id;
+            $thread->user_id = Auth::id();
+        }else{
+            $thread = Thread::find($request->id);
+        }
+
+        $thread->status_id = $request->status_id;
+        $thread->title = $request->title;
         $thread->body = $request->body;
-        $thread->status_id = 0;
+        
+    
         $thread->save();
 
-        // return view('Threads.detail', compact('thread'));
-        return redirect()->route('threads.detail', ['id' => $thread->id]);
+        $incident = $thread->incident;
+
+        return redirect()->route('incidents.detail', ['id' => $incident->id]);
+        // return view('incidents.detail', compact('incident'));
     }
 
 
@@ -57,9 +74,12 @@ class ThreadController extends Controller
      * @param  \App\Models\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function edit(Thread $thread)
+    public function edit($id)
     {
-        //
+        $thread=Thread::find($id);
+        $incident=$thread->incident;
+
+        return view('threads.edit', compact('incident','thread'));
     }
 
     /**
@@ -71,7 +91,15 @@ class ThreadController extends Controller
      */
     public function update(Request $request, Thread $thread)
     {
-        //
+        $thread = Thread::find($request->id);
+        $thread->title = $request->title;
+        $thread->body = $request->body;
+        $thread->status_id = $request->status_id;
+        $thread->save();
+
+        $incident = $thread->incident;
+
+        return view('incidents.detail', compact('incident'));
     }
 
     /**

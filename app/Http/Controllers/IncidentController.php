@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Incident;
+use App\Models\Thread;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -27,8 +28,9 @@ class IncidentController extends Controller
     public function detail($id)
     {
         $incident = Incident::find($id);
+        $thread = new Thread();
 
-        return view('incidents.detail', compact('incident'));
+        return view('incidents.detail', compact('incident','thread'));
     }
 
     public function new()
@@ -36,18 +38,27 @@ class IncidentController extends Controller
         return view('incidents.new');
     }
 
+
     public function store(Request $request)
     {   
-        // dd("ルートチェック");
+        //インシデント：新規登録
+        if($request->id == null){
+            $incident = new Incident();
+            $incident->user_id = Auth::id();
+            
+        //インシデント：更新
+        }else{
+            $incident = Incident::find($request->id);
+        }
         
-        $incident = new Incident();
+        $incident->status_id = $request->status_id;
         $incident->title = $request->title;
         $incident->body = $request->body;
-        $incident->status_id = 0;
         $incident->save();
 
         // return view('incidents.detail', compact('incident'));
-        return redirect()->route('incidents.detail', ['id' => $incident->id]);
+        // return redirect()->route('incidents.detail', ['id' => $incident->id]);
+        return redirect()->back();
     }
 
 
@@ -62,9 +73,9 @@ class IncidentController extends Controller
         $incident->save();
 
         return response()->json([
-            'path' => $image_path,
+            'title' => $incident->title,
+            'body' => $incident->body,
             'message' => 'ok',
-            'images' => $images,
         ], 200, [], JSON_UNESCAPED_UNICODE);
     }
 
@@ -75,7 +86,7 @@ class IncidentController extends Controller
         $incident->delete();
 
         // return view('incidents.detail', compact('incident'));
-        return redirect()->route('incidents.index');
+        return redirect()->route('home');
     }
 
 

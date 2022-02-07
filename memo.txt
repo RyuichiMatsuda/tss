@@ -90,11 +90,11 @@ composer require intervention/image
 
 #マニュアル
 
-// #マニュアル：コマンド
+#マニュアル：コマンド
 php artisan make:migration create_manuals_table --create=manuals
 php artisan make:controller ManualController --model=Manual
 
-// #マニュアル：画像保存：コマンド
+#マニュアル：画像保存：コマンド
 composer require intervention/image
 php artisan storage:link
 
@@ -124,3 +124,34 @@ shift command L  で全選択
 #やること
 binding pry
 php my admin
+
+
+
+
+
+
+#チケットリスト
+
+
+#インシデント：ソフトデリート
+#インシデント：リレーション
+#インシデント：部分テンプレート
+#インシデント：投稿フォーム
+#インシデント：非同期(Ajax)
+#インシデント：ルート
+
+
+#スレッド：リレーション
+#スレッド：投稿フォーム
+#スレッド：非同期(Ajax)
+#スレッド：ルート
+
+
+#マニュアル：画像保存
+#マニュアル：ユーザー認証
+#マニュアル：ホワイトリストを使用した保存
+#マニュアル：バリデーション
+#マニュアル：動画
+#マニュアル：ソフトデリート
+#マニュアル：メソッド
+

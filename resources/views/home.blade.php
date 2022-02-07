@@ -5,74 +5,31 @@
     <div class="row">
         <div class="col-lg-5 p-0 second_border">
             <div class="card second_bar">
+                {{-- インシデント：一覧 S--}}
                 <ul class="list-group list-group-flush nav">
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col">タイトルとか名前とか</div>
-                            <div class="alert-success col-md-4" role="alert">
-                                対応済み
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col small mt-3 pt-0">最終対応者</div>
-                            <div class="col-md-5 text-end small mt-3 pt-0">
-                                2022/1/21 11:21
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col">タイトルとか名前とか</div>
-                            <div class="alert-warning col-md-4 pt-0" role="alert">
-                                対応中
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col small mt-3">最終対応者</div>
-                            <div class="col-md-5 text-end small mt-3 pt-0">
-                                最終更新日時
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A third item</li>
+                    @foreach ($incidents as $incident)
+                        <li class="list-group-item">
+                                <div class="row">
+                                    {{-- インシデント：リンク：詳細 S--}}
+                                    <div class="col">
+                                        <a href="{{ route('incidents.detail', ['id' => $incident->id]) }}">
+                                            {{ $incident->title }}
+                                        </a>
+                                    </div>
+                                    <div class="alert-success col-md-4" role="alert">
+                                        {{ config('status')[$incident->status_id] }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col small mt-3 pt-0">{{ $incident->user->name??"" }}</div>
+                                    <div class="col-md-5 text-end small mt-3 pt-0">
+                                        {{ $incident->created_at }}
+                                    </div>
+                                </div>
+                        </li>
+                    @endforeach
                 </ul>
+                {{-- インシデント：一覧 E--}}
             </div>
             <div class="text-end pe-3">
                 << back next>>
@@ -102,7 +59,6 @@
             </div>
         </div>
         <div class="col-lg-7 p-0 third_bar">
-
             <div class="card third_bar_card">
                 <div class="card-header">
                     <div class="row">

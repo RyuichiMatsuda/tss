@@ -11,8 +11,13 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    {{-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> --}}
+    {{-- // #インシデント：非同期(Ajax)：jQuery呼び出し(Slim版は、ajax使えない。) --}}
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> --}}
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    {{-- // #インシデント：非同期(Ajax) --}}
+    <script type="text/javascript" src="/js/incident.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -165,8 +170,14 @@
                         </ul>
 
                     </div>
-                    <button type="button" class="btn btn-primary w-75 position-absolute bottom-0 start-0"
-                        style="bottom: 40px !important; left: 30px !important; height: 5vh;">インシデント登録</button>
+                    {{-- <button type="button" class="btn btn-primary w-75 position-absolute bottom-0 start-0"
+                        style="bottom: 40px !important; left: 30px !important; height: 5vh;">インシデント登録</button> --}}
+
+                    {{-- // #インシデント：部分テンプレート：フォーム --}}
+                    {{-- {{dd($incident)}} --}}
+                    <div class="position-absolute bottom-0 start-0">
+                        @include('incidents.templates.form', ['new_incident'=>$incident])
+                    </div>
                 </nav>
 
                 <!-- コンテンツ -->

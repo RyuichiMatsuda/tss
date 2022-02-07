@@ -16,22 +16,33 @@ use Illuminate\Support\Facades\Route;
 // #Auth：ルート
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+
+// Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
 
 // #インシデント：ルート
 Route::group(['middleware' => ['auth']], function(){
+    
+
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+    // #インシデント：ルート
     Route::get('incidents/detail/{id}', 'App\Http\Controllers\IncidentController@detail')->name('incidents.detail');
     Route::post('incidents/store', 'App\Http\Controllers\IncidentController@store')->name('incidents.store');
     Route::post('incidents/ajax_store', 'App\Http\Controllers\IncidentController@ajax_store')->name('incidents.ajax_store');
     Route::get('incidents', 'App\Http\Controllers\IncidentController@index')->name('incidents.index');
     Route::get('incidents/new', 'App\Http\Controllers\IncidentController@new')->name('incidents.new');
-// Route::get('incidents/edit', 'App\Http\Controllers\IncidentController@edit')->name('incidents.edit');
+// Route::get('incidents/edit/{id}', 'App\Http\Controllers\IncidentController@edit')->name('incidents.edit');
     Route::post('incidents/destroy', 'App\Http\Controllers\IncidentController@destroy')->name('incidents.destroy');
 // Route::post('incidents/update', 'App\Http\Controllers\IncidentController@update')->name('incidents.update');
 
+    // #スレッド：ルート
+    Route::get('threads/edit/{id}', 'App\Http\Controllers\ThreadController@edit')->name('threads.edit');
+    Route::post('threads/update', 'App\Http\Controllers\ThreadController@update')->name('threads.update');
+    Route::post('threads/destroy', 'App\Http\Controllers\ThreadController@destroy')->name('threads.destroy');
+    Route::post('threads/store', 'App\Http\Controllers\ThreadController@store')->name('threads.store');
 
-// #マニュアル：ルート
+    // #マニュアル：ルート
     Route::get('manuals/detail/{id}', 'App\Http\Controllers\ManualController@detail')->name('manuals.detail');
     Route::post('manuals/store', 'App\Http\Controllers\ManualController@store')->name('manuals.store');
     Route::get('manuals', 'App\Http\Controllers\ManualController@index')->name('manuals.index');

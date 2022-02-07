@@ -20,9 +20,9 @@ class CreateThreadsTable extends Migration
 
             // スレッド：リレーション
             $table->integer('incident_id')->nullable();
-
             $table->integer('user_id')->nullable();
             $table->integer('employee_id')->nullable();
+            
             $table->integer('status_id')->nullable();
             $table->timestamps();
         });
