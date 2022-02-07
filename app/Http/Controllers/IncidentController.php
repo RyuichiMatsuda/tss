@@ -15,9 +15,9 @@ class IncidentController extends Controller
 {
     public function __construct()
     {
-    //   $this->middleware(['auth', 'verified'])->only(['create', 'unlike']);
+        //   $this->middleware(['auth', 'verified'])->only(['create', 'unlike']);
     }
-    
+
     public function index()
     {
         $incidents = Incident::select()->latest()->paginate(12);
@@ -30,7 +30,7 @@ class IncidentController extends Controller
         $incident = Incident::find($id);
         $thread = new Thread();
 
-        return view('incidents.detail', compact('incident','thread'));
+        return view('incidents.detail', compact('incident', 'thread'));
     }
 
     public function new()
@@ -40,17 +40,17 @@ class IncidentController extends Controller
 
 
     public function store(Request $request)
-    {   
+    {
         //インシデント：新規登録
-        if($request->id == null){
+        if ($request->id == null) {
             $incident = new Incident();
             $incident->user_id = Auth::id();
-            
-        //インシデント：更新
-        }else{
+
+            //インシデント：更新
+        } else {
             $incident = Incident::find($request->id);
         }
-        
+
         $incident->status_id = $request->status_id;
         $incident->title = $request->title;
         $incident->body = $request->body;
@@ -81,7 +81,7 @@ class IncidentController extends Controller
 
 
     public function destroy(Request $request)
-    {   
+    {
         $incident = Incident::find($request->id);
         $incident->delete();
 
@@ -90,7 +90,13 @@ class IncidentController extends Controller
     }
 
 
+    public function ajax_index($id)
+    {
+        $incident = Incident::find($id);
+        $threads = $incident->threads;
 
+        return response()->json($threads);
 
+    }
 
 }

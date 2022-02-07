@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth']], function(){
 
     // #インシデント：ルート
     Route::get('incidents/detail/{id}', 'App\Http\Controllers\IncidentController@detail')->name('incidents.detail');
+    Route::POST('incidents/ajax_index/{id}', 'App\Http\Controllers\IncidentController@ajax_index')->name('incidents.ajax_index');
     Route::post('incidents/store', 'App\Http\Controllers\IncidentController@store')->name('incidents.store');
     Route::post('incidents/ajax_store', 'App\Http\Controllers\IncidentController@ajax_store')->name('incidents.ajax_store');
     Route::get('incidents', 'App\Http\Controllers\IncidentController@index')->name('incidents.index');
