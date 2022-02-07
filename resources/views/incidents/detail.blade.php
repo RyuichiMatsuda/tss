@@ -54,7 +54,7 @@
         </div>
         <div class="col-lg-7 p-0 third_bar">
             <div class="card third_bar_card">
-
+                
                 @foreach ($incident->threads as $thread)
                 <div class="card-header">
                     <div class="row">

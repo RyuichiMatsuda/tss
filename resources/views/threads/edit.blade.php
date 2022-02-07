@@ -7,7 +7,7 @@
             <div class="card second_bar">
                 <div class="card-header">{{ __('スレッド編集フォーム') }}</div>
                   {{-- // #インシデント：部分テンプレート：編集フォーム --}}
-                  @include('threads.templates.form', ['incident'=>$incident, 'thread'=>$thread])
+                @include('threads.templates.form', ['incident'=>$incident, 'thread'=>$thread])
             </div>
         </div>
 
