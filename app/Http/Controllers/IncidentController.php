@@ -99,4 +99,34 @@ class IncidentController extends Controller
 
     }
 
+    // #インシデント：検索
+    public function search(Request $request){
+
+
+        $request->validate([
+            'title' => ['max:25'],
+        ],[
+            'title.max' => '検索ワードは、25文字までです。',
+        ]);
+
+        $query = Incident::query();
+        $search1 = $request->input('title');
+
+        if($search1==null){
+            return redirect()->back()->with('flash_message', "検索条件を選択して下さい。");
+        }
+
+         // タイトル入力フォームで入力した文字列を含むカラムを取得します
+        if ($search1!=null) {
+            $query->where('title', 'like', '%'.$search1.'%');
+        }
+
+        //#インシデント：ページネーション
+        $incidents = $query->paginate(2);
+        // $incidents = Incident::select()->latest()->paginate(5);
+        $incident = new Incident();
+
+        return view('home', compact('incidents','incident'));
+    }
+
 }

@@ -179,7 +179,7 @@
                     {{-- // #インシデント：部分テンプレート：フォーム --}}
                     {{-- {{dd($incident)}} --}}
                     <div class="position-absolute bottom-0 start-0">
-                        @include('incidents.templates.form', ['new_incident'=>$incident])
+                        @include('incidents.templates.form', ['incident'=>$incident])
                     </div>
                 </nav>
 

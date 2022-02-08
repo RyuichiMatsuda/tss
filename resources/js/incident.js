@@ -65,6 +65,8 @@ $(function () {
         $testt = data;
         console.log(data);
 
+        
+
         // console.log($testt.data.length);
         // $('.change_card').children('.card').remove();
         // if (Array.isArray($testt)) {

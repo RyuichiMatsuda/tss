@@ -102,6 +102,9 @@ php artisan storage:link
 
 #インシデント
 
+#インシデント：ページネーション：コマンド
+php artisan vendor:publish --tag=laravel-pagination
+
 
 
 
@@ -126,6 +129,10 @@ binding pry
 php my admin
 
 
+#JS CSSコンパイル
+npm install && npm run dev
+
+
 
 
 
@@ -139,7 +146,8 @@ php my admin
 #インシデント：投稿フォーム
 #インシデント：非同期(Ajax)
 #インシデント：ルート
-
+#インシデント：ページネーション
+#インシデント：検索
 
 #スレッド：リレーション
 #スレッド：投稿フォーム

@@ -26,10 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $incidents = Incident::select()->latest()->paginate(12);
-        $new_incident = new Incident();
+        //#インシデント：ページネーション
+        $incidents = Incident::select()->latest()->paginate(5);
+        $incident = new Incident();
 
-        return view('home', compact('incidents','new_incident'));
+        return view('home', compact('incidents','incident'));
     }
 
 
