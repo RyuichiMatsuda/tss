@@ -122,7 +122,8 @@ class IncidentController extends Controller
         }
 
         //#インシデント：ページネーション
-        $incidents = $query->paginate(2);
+        $incidents = $query->paginate(50);
+        // $incidents = $query->get();
         // $incidents = Incident::select()->latest()->paginate(5);
         $incident = new Incident();
 
