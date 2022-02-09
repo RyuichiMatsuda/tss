@@ -51,7 +51,12 @@ class IncidentController extends Controller
             $incident = Incident::find($request->id);
         }
 
-        $incident->status_id = $request->status_id;
+        if ($request->status_id == null) {
+            $incident->status_id = 0;
+        } else {
+            $incident->status_id = $request->status_id;
+        }
+        
         $incident->title = $request->title;
         $incident->body = $request->body;
         $incident->save();
@@ -96,29 +101,29 @@ class IncidentController extends Controller
         $threads = $incident->threads;
 
         return response()->json($threads);
-
     }
 
     // #インシデント：検索
-    public function search(Request $request){
+    public function search(Request $request)
+    {
 
 
         $request->validate([
             'title' => ['max:25'],
-        ],[
+        ], [
             'title.max' => '検索ワードは、25文字までです。',
         ]);
 
         $query = Incident::query();
         $search1 = $request->input('title');
 
-        if($search1==null){
+        if ($search1 == null) {
             return redirect()->back()->with('flash_message', "検索条件を選択して下さい。");
         }
 
-         // タイトル入力フォームで入力した文字列を含むカラムを取得します
-        if ($search1!=null) {
-            $query->where('title', 'like', '%'.$search1.'%');
+        // タイトル入力フォームで入力した文字列を含むカラムを取得します
+        if ($search1 != null) {
+            $query->where('title', 'like', '%' . $search1 . '%');
         }
 
         //#インシデント：ページネーション
@@ -127,7 +132,6 @@ class IncidentController extends Controller
         // $incidents = Incident::select()->latest()->paginate(5);
         $incident = new Incident();
 
-        return view('home', compact('incidents','incident'));
+        return view('home', compact('incidents', 'incident'));
     }
-
 }
