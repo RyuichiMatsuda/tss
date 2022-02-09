@@ -173,14 +173,14 @@
                         </ul>
 
                     </div>
-                    {{-- <button type="button" class="btn btn-primary w-75 position-absolute bottom-0 start-0"
-                        style="bottom: 40px !important; left: 30px !important; height: 5vh;">インシデント登録</button> --}}
+                    <button type="button" class="btn btn-primary w-75 position-absolute bottom-0 start-0"
+                        style="bottom: 40px !important; left: 30px !important; height: 5vh;">インシデント登録</button>
 
                     {{-- // #インシデント：部分テンプレート：フォーム --}}
-                    {{-- {{dd($incident)}} --}}
-                    <div class="position-absolute bottom-0 start-0">
-                        @include('incidents.templates.form', ['incident'=>$incident])
-                    </div>
+                    {{-- {{dd($incident ?? '')}} --}}
+                    {{-- <div class="position-absolute bottom-0 start-0">
+                        @include('incidents.templates.form', ['incident'=>$incident ?? ''])
+                    </div> --}}
                 </nav>
 
                 <!-- コンテンツ -->

@@ -8,6 +8,9 @@
                 {{-- インシデント：部分テンプレート：一覧--}}
                 @include('incidents.templates.index', ['incidents'=>$incidents])
             </div>
+            
+            {{ $incidents->links('vendor.pagination.simple-default') }}
+
             <div class="">
                 <div class="card" style="height: 16vh;">
                     <div class="card-body ms-4 mt-3 p-0">
@@ -21,11 +24,13 @@
                             <input type="checkbox" class="btn-check" id="btnCheck3" autocomplete="off" checked>
                             <label class="btn btn-outline-primary" for="btnCheck3">対応済み</label>
                         </div>
+                        
                     </div>
-                    <div class="input-group mb-3 ms-4" style="width: 90%;">
-                        {{-- // #インシデント：検索 --}}
+
+
                         @include('incidents.templates.search_bar')
-                    </div>
+
+                    
                 </div>
             </div>
         </div>

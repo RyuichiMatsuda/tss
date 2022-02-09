@@ -33,11 +33,10 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('incidents/ajax_store', 'App\Http\Controllers\IncidentController@ajax_store')->name('incidents.ajax_store');
     Route::get('incidents', 'App\Http\Controllers\IncidentController@index')->name('incidents.index');
     Route::get('incidents/new', 'App\Http\Controllers\IncidentController@new')->name('incidents.new');
-    // #インシデント：検索
-    Route::get('incidents/search', 'App\Http\Controllers\IncidentController@search')->name('incidents.search');
 // Route::get('incidents/edit/{id}', 'App\Http\Controllers\IncidentController@edit')->name('incidents.edit');
     Route::post('incidents/destroy', 'App\Http\Controllers\IncidentController@destroy')->name('incidents.destroy');
 // Route::post('incidents/update', 'App\Http\Controllers\IncidentController@update')->name('incidents.update');
+    Route::get('incidents/search','App\Http\Controllers\IncidentController@search')->name('incidents.search');;
 
     // #スレッド：ルート
     Route::get('threads/edit/{id}', 'App\Http\Controllers\ThreadController@edit')->name('threads.edit');
