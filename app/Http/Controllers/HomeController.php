@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         //#インシデント：ページネーション
-        $incidents = Incident::select()->latest()->paginate(5);
+        $incidents = Incident::select()->latest()->paginate(10);
         $incident = new Incident();
 
         return view('home', compact('incidents','incident'));

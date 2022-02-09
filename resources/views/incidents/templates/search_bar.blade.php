@@ -3,7 +3,7 @@
     @csrf
     <div class="input-group mb-3 ms-4" style="width: 90%;">
 
-        <div class="search_frame search_form">
+        <div class="search_frame search_form w-75">
             <input class="form-control" id="title" type="text" placeholder="キーワードで検索" name="title">
         </div>
 

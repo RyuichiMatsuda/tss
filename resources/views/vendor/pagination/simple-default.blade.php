@@ -15,4 +15,9 @@
         @endif
     </div>
 </div>
+@else
+
+<div class="p-3">
+
+</div>
 @endif
