@@ -10,9 +10,9 @@
                     {{ $incident_object->title }}
                 </a>
             </div>
-            <div class="alert-success col-md-4" role="alert">
+            {{-- <div class="alert-success col-md-4" role="alert">
                 {{ config('status')[$incident_object->status_id] }}
-            </div>
+            </div> --}}
         </div>
         <div class="row">
             <div class="col small mt-3 pt-0">{{ $incident_object->user->name??"" }}</div>

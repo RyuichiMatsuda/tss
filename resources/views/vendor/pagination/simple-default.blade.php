@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-<div class="text-end pe-3 row">
+<div class="text-end pe-2 row">
     <div class="col-10">
         @if ($paginator->onFirstPage())
         <div class="disabled" aria-disabled="true"><span>@lang('pagination.previous')</span></div>

@@ -31,11 +31,12 @@
 </head>
 
 <body>
+    
     <div id="app">
         <nav class="navbar navbar-light bg-light p-3">
 
             <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
-                <a class="navbar-brand p-0" href="{{ url('/incidents') }}">
+                <a class="navbar-brand p-0" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-toggle="collapse"
@@ -98,7 +99,7 @@
                         <ul class="nav flex-column">
 
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">
+                                <a class="nav-link active" aria-current="page" href="{{ url('/') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round" class="feather feather-home">
@@ -173,14 +174,18 @@
                         </ul>
 
                     </div>
+
+                    
                     <button type="button" class="btn btn-primary w-75 position-absolute bottom-0 start-0"
-                        style="bottom: 40px !important; left: 30px !important; height: 5vh;">インシデント登録</button>
+                        style="bottom: 40px !important; left: 30px !important; height: 5vh;" onclick="location.href='{{ url('/incidents/new') }}'"">インシデント登録</button>
 
                     {{-- // #インシデント：部分テンプレート：フォーム --}}
                     {{-- {{dd($incident ?? '')}} --}}
                     {{-- <div class="position-absolute bottom-0 start-0">
                         @include('incidents.templates.form', ['incident'=>$incident ?? ''])
                     </div> --}}
+
+                    
                 </nav>
 
                 <!-- コンテンツ -->
