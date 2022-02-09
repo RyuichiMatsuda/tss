@@ -45,8 +45,7 @@
             </div>
 
             {{-- // #インシデント：投稿フォーム：セレクト --}}
-            <select required class="" id="status_id" name="status_id">
-                {{-- <option value="" hidden>ステータス ▼</option> --}}
+            {{-- <select required class="" id="status_id" name="status_id">
                 @foreach(config('status') as $index => $name)
                 @if($index === $incident->status_id)
                 <option value="{{ $index }}" selected>{{ $name }}</option>
@@ -54,7 +53,7 @@
                 <option value="{{ $index }}">{{ $name }}</option>
                 @endif
                 @endforeach
-            </select>
+            </select> --}}
 
             <div class="row mb-0">
                 <div class="col-md-6 offset-md-4">

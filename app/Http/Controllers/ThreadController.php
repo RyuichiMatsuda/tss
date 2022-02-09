@@ -108,8 +108,12 @@ class ThreadController extends Controller
      * @param  \App\Models\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Thread $thread)
+    public function destroy(Request $request)
     {
-        //
+        $thread = Thread::find($request->id);
+        $id = $thread->incident->id;
+        $thread->delete();        
+
+        return redirect()->route('incidents.detail', ['id' => $id]);
     }
 }

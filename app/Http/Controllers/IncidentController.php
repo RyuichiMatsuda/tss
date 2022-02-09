@@ -35,6 +35,8 @@ class IncidentController extends Controller
 
     public function new()
     {
+
+
         return view('incidents.new');
     }
 
@@ -50,20 +52,22 @@ class IncidentController extends Controller
         } else {
             $incident = Incident::find($request->id);
         }
-
-        if ($request->status_id == null) {
-            $incident->status_id = 0;
-        } else {
-            $incident->status_id = $request->status_id;
-        }
         
         $incident->title = $request->title;
         $incident->body = $request->body;
         $incident->save();
 
-        // return view('incidents.detail', compact('incident'));
-        // return redirect()->route('incidents.detail', ['id' => $incident->id]);
-        return redirect()->back();
+        //スレッド
+        $thread = new Thread();
+        $thread->incident_id = $incident->id;
+        $thread->user_id = Auth::id();
+        $thread->title = $request->thread_title;
+        $thread->body = $request->thread_body;
+        $thread->status_id = $request->status;
+        $thread->save();
+
+
+        return redirect()->route('home');
     }
 
 

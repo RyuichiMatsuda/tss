@@ -9,7 +9,8 @@
 
                 <div class="card-body">
 
-                    <p>インシデント新規登録</p>
+                    <div class="row mb-3">
+                        <label for="title" class="col-md-4 col-form-label text-md-end">{{ __('インシデント新規登録') }}</label>
 
                     {{-- // #インシデント：投稿フォーム --}}
                     <form method="POST" action="{{ route('incidents.store') }}">
@@ -49,32 +50,52 @@
                             </div>
                         </div>
 
-                        {{-- 対応社員登録 --}}
 
-                        {{-- 社員名のプルダウンメニュー（今は閉じておく。） S
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('顧客名') }}</label>
-                            @if(false)
+                            <label for="title" class="col-md-4 col-form-label text-md-end">{{ __('スレッド新規登録') }}</label>
+                        
+                        <div class="row mb-3">
+                            <label for="thread_title" class="col-md-4 col-form-label text-md-end">{{ __('タイトル') }}</label>
+            
                             <div class="col-md-6">
-
-                                <select class="form-control" id="employee_id" name="value_category_id" required>
-                                    <option value="" hidden>▼対応社員名</option>
-                                    @foreach($value_categories as $value_category)
-                                    @if($company_value->value_category->id === $value_category->id )
-                                    <option value="{{ $value_category->id }}" selected>{{ $value_category->title }}
-                                    </option>
-                                    <option value="{{ $value_category->id }}">{{ $value_category->title }}</option>
-                                    @endforeach
-                                </select>
-
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                <input id="thread_title" type="text" class="form-control @error('title') is-invalid @enderror" name="thread_title" value="{{ old('thread_title') }}" required >
+            
+                                @error('thread_title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
-                            @endif
-                            社員名のプルダウンメニュー（今は閉じておく。） E --}}
+                        </div>
+            
+                        <div class="row mb-3">
+                            <label for="thread_body" class="col-md-4 col-form-label text-md-end">{{ __('スレッド概要') }}</label>
+            
+                            <div class="col-md-6">
+                                <textarea id="thread_body" type="text" class="form-control @error('thread_body') is-invalid @enderror" name="thread_body" value="{{ old('thread_body') }}" required ></textarea>
+            
+                                {{-- @error('body')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror --}}
+            
+                            </div>
+                        </div>
+            
+                        <div class="row mb-3">
+                            <label for="" class="col-md-4 col-form-label text-md-end">{{ __('ステータス') }}</label>
+            
+                            <div class="col-md-6">
+                                <select required class="" id="status_id" name="status_id">
+                                    {{-- <option value="" hidden>ステータス ▼</option> --}}
+                                    @foreach(config('status') as $index => $name)
+                                        <option value="{{ $index }}">{{ $name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
 
 
                             <div class="row mb-0">

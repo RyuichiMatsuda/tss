@@ -30,7 +30,7 @@
                         </div>
                     </div>
 
-                    <p>インシデントステータス: {{ config('status')[$incident->status_id] }}</p>
+                    <p>インシデントステータス:</p>
 
                     <p><a href="{{ route('home') }}">一覧ページへ</a></p>
                     {{-- <p><a href="{{ route('incidents.new') }}">新規インシデント登録へ</a></p> --}}
@@ -44,46 +44,47 @@
                     </p>
 
 
-                    {{-- <div class="card-header">{{ __('スレッド追加') }}</div> --}}
-                    {{-- <div class="card-body"> --}}
+                    <p>{{ __('スレッド追加') }}</p>
+                    <div>
                         {{-- // #インシデント：部分テンプレート：編集フォーム --}}
-                        {{-- @include('threads.templates.form', ['incident'=>$incident, 'thread'=>$thread]) --}}
-                        {{-- </div> --}}
-                    {{--
-                </div> --}}
+                        @include('threads.templates.form', ['incident'=>$incident, 'thread'=>$thread])
+                    </div>
+                    
+                </div>
 
             </div>
         </div>
 
-    </div>
-    <div class="col-lg-7 p-0 third_bar">
-        <div class="card third_bar_card">
 
-            @foreach ($incident->threads as $thread)
-            <div class="card-header">
-                <div class="row">
-                    <div class="col">作成者：{{ $thread->user->name??""}}</div>
-                    <div class="alert-success col-md-2" role="alert">
-                        {{ config('status')[$thread->status_id] }}
+        <div class="col-lg-7 p-0 third_bar">
+            <div class="card third_bar_card">
+
+                @foreach ($incident->threads as $thread)
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col">作成者：{{ $thread->user->name??""}}</div>
+                        <div class="alert-success col-md-2" role="alert">
+                            {{ config('status')[$thread->status_id] }}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ $thread->title??""}}</h5>
-                <p class="card-text">
-                    {{ $thread->body??""}}
-                </p>
-                <p class="">
-                    {{ $incident->created_at }}
-                </p>
+                <div class="card-body">
+                    <h5 class="card-title">{{ $thread->title??""}}</h5>
+                    <p class="card-text">
+                        {{ $thread->body??""}}
+                    </p>
+                    <p class="">
+                        {{ $incident->created_at }}
+                    </p>
 
 
-                {{-- スレッド：リンク：編集 --}}
-                <a href="{{ route('threads.edit', ['id' => $thread->id]) }}">
-                    編集
-                </a>
+                    {{-- スレッド：リンク：編集 --}}
+                    <a href="{{ route('threads.edit', ['id' => $thread->id]) }}">
+                        編集
+                    </a>
+                </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
     </div>
 </main>

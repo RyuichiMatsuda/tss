@@ -2,7 +2,7 @@
 {{-- // #スレッド：部分テンプレート：フォーム --}}
 
 {{-- <div class="card"> --}}
-    <div class="card-header">{{ __('スレッドフォーム') }}</div>
+{{-- <div class="card-header">{{ __('スレッドフォーム') }}</div> --}}
 
     {{-- <div class="card-body"> --}}
     {{-- {{dd($thread) }} --}}
@@ -62,14 +62,8 @@
                     <button Type="submit" class="btn btn-primary">
                         {{ __('送信') }}
                     </button>
-                   
 
-                    {{-- // #スレッド：非同期(Ajax)：thread_btnを指定し、jQueryで呼べるようにしている。 --}}
-                    {{-- <div class="btn btn-primary thread_btn">
-                        {{ __('更新') }}
-                    </div> --}}
                 </div>
             </div>
 
         </form>
-    </div>
